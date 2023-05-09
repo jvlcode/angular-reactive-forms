@@ -1,0 +1,118 @@
+<div class="container">
+    <h3>Reactive Form</h3>
+    <form [formGroup]="contactForm" (submit)="onSubmit()">
+        <p>
+          <label for="firstname">First Name </label>
+          <input type="text" id="firstname" name="firstname" formControlName="firstName">
+          <span  *ngIf="!firstname?.valid && (firstname?.touched || firstname?.dirty)">
+             <span class="text-danger" *ngIf="firstname?.errors?.['required']">
+                Firstname is required
+             </span>
+             <span class="text-danger" *ngIf="firstname?.errors?.['minlength']">
+                Minimum length is 10 Characters
+             </span>
+          </span>
+        </p>
+       
+        <p>
+          <label for="lastname">Last Name </label>
+          <input type="text" id="lastname" name="lastname" formControlName="lastName">
+          <span  *ngIf="!lastname?.valid && (lastname?.touched || lastname?.dirty)">
+            <span class="text-danger" *ngIf="lastname?.errors?.['required']">
+               Lastname is required
+            </span>
+            <span class="text-danger" *ngIf="lastname?.errors?.['maxlength']">
+               Maximum length is 15 Characters
+            </span>
+            <span class="text-danger" *ngIf="lastname?.errors?.['pattern']">
+               Only characters are allowed
+            </span>
+         </span>
+        </p>
+       
+        <p>
+          <label for="email">Email </label>
+          <input type="text" id="email" name="email" formControlName="email">
+          <span  *ngIf="!email?.valid && (email?.touched || email?.dirty)">
+            <span class="text-danger" *ngIf="email?.errors?.['required']">
+               Email is required
+            </span>
+         </span>
+        </p>
+       
+        <p>
+          <label for="gender">Gender </label>
+          <input type="radio" value="male" id="gender" name="gender" formControlName="gender"> Male
+          <input type="radio" value="female" id="gender" name="gender" formControlName="gender"> Female
+          <span  *ngIf="!gender?.valid && (gender?.touched || gender?.dirty)">
+            <span class="text-danger" *ngIf="gender?.errors?.['required']">
+               Gender is required
+            </span>
+          </span>
+        </p>
+       
+        <p>
+          <label for="isMarried">Married </label>
+          <input type="checkbox" id="isMarried" name="isMarried" formControlName="isMarried">
+          <span  *ngIf="!marriedStatus?.valid && (marriedStatus?.touched || marriedStatus?.dirty)">
+            <span class="text-danger" *ngIf="marriedStatus?.errors?.['required']">
+               Married status is required
+            </span>
+          </span>
+        </p>
+       
+       
+        <p>
+          <label for="country">Country </label>
+          <select id="country" name="country" formControlName="country">
+            <option value="1">India</option>
+            <option value="2">USA</option>
+            <option value="3">England</option>
+            <option value="4">Singapore</option>
+          </select>
+          <span  *ngIf="!country?.valid && (country?.touched || country?.dirty)">
+            <span class="text-danger" *ngIf="country?.errors?.['required']">
+               Country is required
+            </span>
+          </span>
+        </p>
+
+        <div formGroupName="address">
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="city" formControlName="city" >
+                <span  *ngIf="!city?.valid && (city?.touched || city?.dirty)">
+                  <span class="text-danger" *ngIf="city?.errors?.['required']">
+                     City is required
+                  </span>
+                </span>
+            </div>
+         
+            <div class="form-group">
+                <label for="street">Street</label>
+                <input type="text" class="form-control" name="street" formControlName="street" >
+                <span  *ngIf="!street?.valid && (street?.touched || street?.dirty)">
+                  <span class="text-danger" *ngIf="street?.errors?.['required']">
+                     Street is required
+                  </span>
+                </span>
+            </div>
+         
+            <div class="form-group">
+                <label for="pincode">Pin Code</label>
+                <input type="text" class="form-control" name="pincode" formControlName="pincode">
+                <span  *ngIf="!pincode?.valid && (pincode?.touched || pincode?.dirty)">
+                  <span class="text-danger" *ngIf="pincode?.errors?.['required']">
+                     Pincode is required
+                  </span>
+                </span>
+            </div>
+         
+        </div>
+       
+        <p>
+          <button type="submit" [disabled]="!contactForm.valid">Submit</button>
+        </p>
+       
+    </form>
+</div>
